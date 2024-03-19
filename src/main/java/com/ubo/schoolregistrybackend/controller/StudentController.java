@@ -24,8 +24,6 @@ public class StudentController {
         List<StudentDto> studentDtos = studentService.getAll();
         return ResponseEntity.ok(studentDtos);
     }
-
-    @GetMapping("/getStudentById/{id}")
     public ResponseEntity<StudentDto> getStudentById(@PathVariable UUID id) {
         return ResponseEntity.ok(studentService.findById(id));
     }

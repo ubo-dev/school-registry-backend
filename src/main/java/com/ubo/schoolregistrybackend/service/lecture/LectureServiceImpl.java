@@ -5,10 +5,12 @@ import com.ubo.schoolregistrybackend.dto.lecture.LectureDto;
 import com.ubo.schoolregistrybackend.model.Lecture;
 import com.ubo.schoolregistrybackend.repository.LectureRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class LectureServiceImpl implements LectureService {
 
     private final LectureRepository lectureRepository;
