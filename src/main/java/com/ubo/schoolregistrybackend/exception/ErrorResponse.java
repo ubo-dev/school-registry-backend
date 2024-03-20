@@ -18,6 +18,14 @@ public class ErrorResponse {
     private String thrownAt;
     private List<ValidationError> errors;
 
+    public ErrorResponse(String userName, String description, String name, String message, int value, String formattedDateTime) {
+        this.userName = userName;
+        this.description = description;
+        this.classTrace = name;
+        this.message = message;
+        this.status = value;
+        this.thrownAt = formattedDateTime;
+    }
 
 
     private record ValidationError(String field, String message) {
@@ -34,7 +42,6 @@ public class ErrorResponse {
         this.status = status;
         this.message = message;
     }
-
 
 
 }
