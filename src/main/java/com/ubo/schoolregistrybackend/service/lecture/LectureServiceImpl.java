@@ -4,7 +4,9 @@ import com.ubo.schoolregistrybackend.dto.converter.LectureDtoConverter;
 import com.ubo.schoolregistrybackend.dto.lecture.LectureDto;
 import com.ubo.schoolregistrybackend.dto.lecture.request.CreateLectureRequest;
 import com.ubo.schoolregistrybackend.model.Lecture;
+import com.ubo.schoolregistrybackend.model.Student;
 import com.ubo.schoolregistrybackend.repository.LectureRepository;
+import com.ubo.schoolregistrybackend.service.student.StudentService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,14 @@ public class LectureServiceImpl implements LectureService {
 
     private final LectureRepository lectureRepository;
     private final LectureDtoConverter lectureDtoConverter;
+    private final StudentService studentService;
 
-    public LectureServiceImpl(LectureRepository lectureRepository, LectureDtoConverter lectureDtoConverter) {
+    public LectureServiceImpl(LectureRepository lectureRepository,
+                              LectureDtoConverter lectureDtoConverter,
+                              StudentService studentService) {
         this.lectureRepository = lectureRepository;
         this.lectureDtoConverter = lectureDtoConverter;
+        this.studentService = studentService;
     }
 
     public LectureDto create(CreateLectureRequest request) {
@@ -77,4 +83,35 @@ public class LectureServiceImpl implements LectureService {
 
         return lectureDtoConverter.convertLectureDto(lectureRepository.save(lecture));
     }
+
+    public LectureDto assignStudentToLecture(UUID studentId, UUID lectureId) {
+        var lecture = lectureRepository.findById(lectureId)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("There is no lecture found with given id.")
+                );
+
+        var student = studentService.findById(studentId);
+        var enrolledStudents = lecture.getStudents();
+
+        if (enrolledStudents.stream().anyMatch(s -> s.getStudentId().equals(studentId)))
+            throw new IllegalArgumentException("Student is already enrolled in this lecture.");
+        else if (student.lectureSet().size() >= 5) {
+            throw new IllegalArgumentException("Student can not enroll more than 5 lectures.");
+        }
+        else if (enrolledStudents.size() == 50) {
+            throw new IllegalArgumentException("Lecture is already full.");
+        } else {
+            enrolledStudents.add(new Student(
+                    student.studentId(),
+                    student.firstName(),
+                    student.lastName()
+            ));
+            lecture.setStudents(enrolledStudents);
+        }
+
+
+        return lectureDtoConverter.convertLectureDto(lectureRepository.save(lecture));
+    }
+
 }
+

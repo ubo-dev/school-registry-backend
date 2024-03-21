@@ -2,6 +2,7 @@ package com.ubo.schoolregistrybackend.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class Lecture {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "lecture_id")
     )
-    Set<Student> students;
+    List<Student> students;
 
     public Lecture() {
 
@@ -63,4 +64,11 @@ public class Lecture {
         this.lectureName = lectureName;
     }
 
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
 }

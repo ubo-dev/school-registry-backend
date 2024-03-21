@@ -49,4 +49,9 @@ public class LectureController {
     public ResponseEntity<LectureDto> updateLecture(@PathVariable UUID id, @RequestBody CreateLectureRequest request) {
         return ResponseEntity.ok(lectureService.update(id, request));
     }
+
+    @PutMapping("/assignStudent/{studentId}/to/{lectureId}")
+    public ResponseEntity<LectureDto> assignStudentToLecture(@PathVariable String studentId, @PathVariable String lectureId) {
+        return ResponseEntity.ok(lectureService.assignStudentToLecture(UUID.fromString(studentId), UUID.fromString(lectureId)));
+    }
 }

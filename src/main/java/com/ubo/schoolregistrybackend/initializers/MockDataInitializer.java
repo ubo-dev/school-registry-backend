@@ -44,15 +44,15 @@ public class MockDataInitializer implements CommandLineRunner {
 
 
         List<Student> students = List.of(
-                new Student(UUID.randomUUID(), "Mehmet", "Yılmaz", Set.of(chemistry, biology)),
-                new Student(UUID.randomUUID(), "Ahmet", "Deniz", Set.of(history)),
-                new Student(UUID.randomUUID(), "Ayşe", "Ermiş", Set.of(geography)),
-                new Student(UUID.randomUUID(), "Fatma", "Bıçak", Set.of(math)),
-                new Student(UUID.randomUUID(), "Ali", "Demirci", Set.of(physics)),
-                new Student(UUID.randomUUID(), "Hasan", "Yıldız", Set.of(physics)),
-                new Student(UUID.randomUUID(), "Hüseyin", "Kara", Set.of(music)),
-                new Student(UUID.randomUUID(), "Mehmet", "Okur", Set.of(art)),
-                new Student(UUID.randomUUID(), "Merve", "Duman", Set.of(literature))
+                new Student(UUID.randomUUID(), "Mehmet", "Yılmaz", List.of(chemistry, biology)),
+                new Student(UUID.randomUUID(), "Ahmet", "Deniz", List.of(history)),
+                new Student(UUID.randomUUID(), "Ayşe", "Ermiş", List.of(geography)),
+                new Student(UUID.randomUUID(), "Fatma", "Bıçak", List.of(math)),
+                new Student(UUID.randomUUID(), "Ali", "Demirci", List.of(physics)),
+                new Student(UUID.randomUUID(), "Hasan", "Yıldız", List.of(physics)),
+                new Student(UUID.randomUUID(), "Hüseyin", "Kara", List.of(music)),
+                new Student(UUID.randomUUID(), "Mehmet", "Okur", List.of(art)),
+                new Student(UUID.randomUUID(), "Merve", "Duman", List.of(literature))
         );
 
         studentRepository.saveAll(students);

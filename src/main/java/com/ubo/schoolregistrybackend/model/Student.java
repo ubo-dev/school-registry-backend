@@ -2,7 +2,8 @@ package com.ubo.schoolregistrybackend.model;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
+
 import java.util.UUID;
 
 @Entity
@@ -21,13 +22,19 @@ public class Student {
             joinColumns = @JoinColumn(name = "lecture_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-    private Set<Lecture> lectures;
+    private List<Lecture> lectures;
 
     public Student() {
 
     }
 
-    public Student(UUID studentId, String firstName, String lastName, Set<Lecture> lectures) {
+    public Student(UUID studentId, String firstName, String lastName) {
+        this.studentId = studentId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Student(UUID studentId, String firstName, String lastName, List<Lecture> lectures) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,11 +70,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Set<Lecture> getLectures() {
+    public List<Lecture> getLectures() {
         return lectures;
     }
 
-    public void setLectures(Set<Lecture> lectures) {
+    public void setLectures(List<Lecture> lectures) {
         this.lectures = lectures;
     }
 }

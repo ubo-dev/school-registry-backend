@@ -21,4 +21,6 @@ public interface LectureService {
     void delete(UUID lectureId);
 
     LectureDto update(UUID lectureId, CreateLectureRequest request);
+
+    LectureDto assignStudentToLecture(UUID studentId, UUID lectureId);
 }

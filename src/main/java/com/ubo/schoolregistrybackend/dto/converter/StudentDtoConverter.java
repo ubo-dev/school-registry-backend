@@ -5,15 +5,23 @@ import com.ubo.schoolregistrybackend.model.Student;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class StudentDtoConverter {
+
+    private final LectureDtoConverter lectureDtoConverter;
+
+    public StudentDtoConverter(LectureDtoConverter lectureDtoConverter) {
+        this.lectureDtoConverter = lectureDtoConverter;
+    }
 
     public StudentDto convertStudentDto(Student student) {
         return new StudentDto(
                 student.getStudentId(),
                 student.getFirstName(),
-                student.getLastName()
+                student.getLastName(),
+                lectureDtoConverter.convertLectureDtoList(student.getLectures())
         );
     }
 
