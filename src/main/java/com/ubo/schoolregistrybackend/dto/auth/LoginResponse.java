@@ -1,4 +1,6 @@
 package com.ubo.schoolregistrybackend.dto.auth;
 
-public record LoginResponse(String message) {
+import com.ubo.schoolregistrybackend.dto.user.UserDto;
+
+public record LoginResponse(UserDto userDto) {
 }

@@ -19,6 +19,14 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private RoleType name ;
 
+    public Role(RoleType role) {
+        this.name = role;
+    }
+
+    public Role() {
+
+    }
+
     public String getName() {
         return name.toString();
     }

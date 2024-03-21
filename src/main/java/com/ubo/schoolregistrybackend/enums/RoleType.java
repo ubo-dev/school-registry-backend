@@ -52,13 +52,4 @@ public enum RoleType {
         authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return authorities;
     }
-
-    public static RoleType fromString(String text) {
-        for (RoleType role : RoleType.values()) {
-            if (role.name().equalsIgnoreCase(text)) {
-                return role;
-            }
-        }
-        throw new IllegalArgumentException("No constant with name " + text + " found in RoleType enum");
-    }
 }

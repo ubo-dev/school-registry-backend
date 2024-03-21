@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -35,9 +36,19 @@ public class User implements UserDetails {
     private Boolean isActive;
     @Column(name = "last_login_date")
     private LocalDateTime lastLoginDate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
+
+    public User(String firstName, String lastName, String email, String password, Boolean isActive, LocalDateTime lastLoginDate, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.isActive = isActive;
+        this.lastLoginDate = lastLoginDate;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
