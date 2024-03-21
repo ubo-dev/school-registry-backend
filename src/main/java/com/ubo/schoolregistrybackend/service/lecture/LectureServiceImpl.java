@@ -49,4 +49,8 @@ public class LectureServiceImpl implements LectureService {
 
         return lectureDtoConverter.convertLectureDto(lecture);
     }
+
+    public void delete(UUID lectureId) {
+        lectureRepository.deleteById(lectureId);
+    }
 }

@@ -15,4 +15,6 @@ public interface StudentService {
     List<StudentDto> getAll();
 
     StudentDto findById(UUID uuid);
+
+    void delete(UUID id);
 }

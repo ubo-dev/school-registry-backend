@@ -49,4 +49,9 @@ public class StudentServiceImpl implements StudentService {
 
         return studentDtoConverter.convertStudentDto(student);
     }
+
+    public void delete(UUID id) {
+        studentRepository.deleteById(id);
+    }
+
 }

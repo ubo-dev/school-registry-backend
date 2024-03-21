@@ -9,14 +9,14 @@ import java.util.UUID;
 public class Lecture {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID lectureId;
 
     private String lectureCode;
 
     private String lectureName;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "student_lecture",
             joinColumns = @JoinColumn(name = "student_id"),

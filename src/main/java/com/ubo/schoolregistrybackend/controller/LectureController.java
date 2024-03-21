@@ -3,10 +3,7 @@ package com.ubo.schoolregistrybackend.controller;
 import com.ubo.schoolregistrybackend.dto.lecture.LectureDto;
 import com.ubo.schoolregistrybackend.service.lecture.LectureService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,5 +31,11 @@ public class LectureController {
     @GetMapping("/getLectureByCode/{lectureCode}")
     public ResponseEntity<LectureDto> findLectureByLectureCode(@PathVariable String lectureCode) {
         return ResponseEntity.ok(lectureService.findLectureByLectureCode(lectureCode));
+    }
+
+    @DeleteMapping("/deleteLecture/{id}")
+    public ResponseEntity<String> deleteLecture(@PathVariable UUID id) {
+        lectureService.delete(id);
+        return ResponseEntity.ok("Lecture with id " + id + " has been deleted");
     }
 }

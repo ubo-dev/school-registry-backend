@@ -32,4 +32,10 @@ public class StudentController {
     public ResponseEntity<StudentDto> createStudent(@RequestBody CreateStudentRequest request) {
         return ResponseEntity.ok(studentService.create(request));
     }
+
+    @DeleteMapping("/deleteStudent/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable UUID id) {
+        studentService.delete(id);
+        return ResponseEntity.ok("Student with id " + id + " has been deleted");
+    }
 }

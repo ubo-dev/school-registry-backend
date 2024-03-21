@@ -14,4 +14,6 @@ public interface LectureService {
     List<LectureDto> getAllLecture();
 
     LectureDto findLectureByLectureCode(String lectureCode);
+
+    void delete(UUID lectureId);
 }
