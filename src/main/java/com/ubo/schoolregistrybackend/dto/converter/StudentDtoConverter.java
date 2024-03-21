@@ -21,7 +21,7 @@ public class StudentDtoConverter {
                 student.getStudentId(),
                 student.getFirstName(),
                 student.getLastName(),
-                lectureDtoConverter.convertLectureDtoList(student.getLectures())
+                lectureDtoConverter.convertLectureDtoList(student.getLectures() == null ? List.of() : student.getLectures())
         );
     }
 
