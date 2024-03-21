@@ -17,4 +17,6 @@ public interface StudentService {
     StudentDto findById(UUID uuid);
 
     void delete(UUID id);
+
+    StudentDto update(UUID id, CreateStudentRequest request);
 }

@@ -38,4 +38,9 @@ public class StudentController {
         studentService.delete(id);
         return ResponseEntity.ok("Student with id " + id + " has been deleted");
     }
+
+    @PutMapping("/updateStudent/{id}")
+    public ResponseEntity<StudentDto> updateStudent(@PathVariable String id, @RequestBody CreateStudentRequest request) {
+        return ResponseEntity.ok(studentService.update(UUID.fromString(id), request));
+    }
 }

@@ -1,6 +1,7 @@
 package com.ubo.schoolregistrybackend.controller;
 
 import com.ubo.schoolregistrybackend.dto.lecture.LectureDto;
+import com.ubo.schoolregistrybackend.dto.lecture.request.CreateLectureRequest;
 import com.ubo.schoolregistrybackend.service.lecture.LectureService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +38,15 @@ public class LectureController {
     public ResponseEntity<String> deleteLecture(@PathVariable UUID id) {
         lectureService.delete(id);
         return ResponseEntity.ok("Lecture with id " + id + " has been deleted");
+    }
+
+    @PostMapping("/createLecture")
+    public ResponseEntity<LectureDto> createLecture(@RequestBody CreateLectureRequest request) {
+        return ResponseEntity.ok(lectureService.create(request));
+    }
+
+    @PutMapping("/updateLecture/{id}")
+    public ResponseEntity<LectureDto> updateLecture(@PathVariable UUID id, @RequestBody CreateLectureRequest request) {
+        return ResponseEntity.ok(lectureService.update(id, request));
     }
 }

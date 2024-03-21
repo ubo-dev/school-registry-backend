@@ -2,6 +2,7 @@ package com.ubo.schoolregistrybackend.service.lecture;
 
 import com.ubo.schoolregistrybackend.dto.converter.LectureDtoConverter;
 import com.ubo.schoolregistrybackend.dto.lecture.LectureDto;
+import com.ubo.schoolregistrybackend.dto.lecture.request.CreateLectureRequest;
 import com.ubo.schoolregistrybackend.model.Lecture;
 import com.ubo.schoolregistrybackend.repository.LectureRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,6 +20,17 @@ public class LectureServiceImpl implements LectureService {
     public LectureServiceImpl(LectureRepository lectureRepository, LectureDtoConverter lectureDtoConverter) {
         this.lectureRepository = lectureRepository;
         this.lectureDtoConverter = lectureDtoConverter;
+    }
+
+    public LectureDto create(CreateLectureRequest request) {
+        return lectureDtoConverter.convertLectureDto(
+                lectureRepository.save(
+                        new Lecture(
+                                request.lectureCode(),
+                                request.lectureName()
+                        )
+                )
+        );
     }
 
     public LectureDto findById(UUID lectureId) {
@@ -52,5 +64,17 @@ public class LectureServiceImpl implements LectureService {
 
     public void delete(UUID lectureId) {
         lectureRepository.deleteById(lectureId);
+    }
+
+    public LectureDto update(UUID lectureId, CreateLectureRequest request) {
+        var lecture = lectureRepository.findById(lectureId)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("There is no lecture found with given id.")
+                );
+
+        lecture.setLectureCode(request.lectureCode());
+        lecture.setLectureName(request.lectureName());
+
+        return lectureDtoConverter.convertLectureDto(lectureRepository.save(lecture));
     }
 }

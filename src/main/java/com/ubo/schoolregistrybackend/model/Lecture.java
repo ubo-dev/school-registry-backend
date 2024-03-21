@@ -28,6 +28,11 @@ public class Lecture {
 
     }
 
+    public Lecture(String lectureCode, String lectureName) {
+        this.lectureCode = lectureCode;
+        this.lectureName = lectureName;
+    }
+
     public Lecture(UUID lectureId, String lectureCode, String lectureName) {
         this.lectureId = lectureId;
         this.lectureCode = lectureCode;

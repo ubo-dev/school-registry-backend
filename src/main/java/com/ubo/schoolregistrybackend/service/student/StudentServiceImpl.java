@@ -54,4 +54,15 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteById(id);
     }
 
+    public StudentDto update(UUID id, CreateStudentRequest request) {
+        var student = studentRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("There is no student found with given id")
+        );
+
+        student.setFirstName(request.firstName());
+        student.setLastName(request.lastName());
+
+        return studentDtoConverter.convertStudentDto(studentRepository.save(student));
+    }
+
 }
