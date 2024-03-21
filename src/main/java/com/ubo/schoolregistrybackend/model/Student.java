@@ -15,7 +15,7 @@ public class Student {
     private String firstName;
     private String lastName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "student_lecture",
             joinColumns = @JoinColumn(name = "student_id"),

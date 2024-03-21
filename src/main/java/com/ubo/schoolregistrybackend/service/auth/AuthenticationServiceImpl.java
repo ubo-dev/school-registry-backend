@@ -30,7 +30,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         var existingUser = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new EmailNotFoundException("No user found with given email: " + request.email()));
 
-
         if (!passwordEncoder.matches(request.password(), existingUser.getPassword())) {
             throw new IncorrectPasswordException("Incorrect password for the user with email: " + request.email());
         }
@@ -38,7 +37,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         existingUser.setLastLoginDate(LocalDateTime.now());
 
         userRepository.save(existingUser);
-
 
         return new LoginResponse("Authenticated");
     }

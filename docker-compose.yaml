@@ -1,8 +1,8 @@
-version: '3'
+version: '3.9'
 services:
   db:
-    container_name: postgres_dev_db
-    image: postgres
+    container_name: postgres_db
+    image: postgres:16-alpine
     restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
@@ -12,20 +12,8 @@ services:
       - db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  pgadmin:
-    container_name: pgadmin_dev
-    image: dpage/pgadmin4
-    restart: always
-    ports:
-      - "5050:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
 networks:
   name:
     external: true
 volumes:
   db:
-  pgadmin-data:

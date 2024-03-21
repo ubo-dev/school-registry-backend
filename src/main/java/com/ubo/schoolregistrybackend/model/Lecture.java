@@ -16,7 +16,7 @@ public class Lecture {
 
     private String lectureName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "student_lecture",
             joinColumns = @JoinColumn(name = "student_id"),
@@ -28,11 +28,10 @@ public class Lecture {
 
     }
 
-    public Lecture(UUID lectureId, String lectureCode, String lectureName, Set<Student> students) {
+    public Lecture(UUID lectureId, String lectureCode, String lectureName) {
         this.lectureId = lectureId;
         this.lectureCode = lectureCode;
         this.lectureName = lectureName;
-        this.students = students;
     }
 
     public UUID getLectureId() {
