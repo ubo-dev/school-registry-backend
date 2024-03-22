@@ -78,3 +78,5 @@ React app will be available in;
 ```
 http://172.20.0.2:3000/
 ```
+
+You can run ``` docker logs frontend-container ``` to see available port and address that react application works.
