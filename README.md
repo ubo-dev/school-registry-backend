@@ -7,10 +7,12 @@ This project provides to create students and lectures, and allows users to manag
 
 ### Endpoints
 
-#### Login Credentials
----
-admin credentials -> admin@gmail.com - passwd123*
-user credentials -> user@gmail.com - passwd123*
+### Login Credentials
+
+**admin credentials** &rarr; admin@gmail.com - passwd123* 
+
+**user credentials &rarr;** user@gmail.com - passwd123*
+
 
 ```html
 POST /api/auth/logih -- usable for login as a user or admin
