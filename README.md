@@ -66,7 +66,7 @@ The UI app and backend application is ready to go and work with only one command
 #### Docker Compose
 
 
-You just need to run `docker-compose up -d` command
+You just need to run `docker-compose up -d` command after pulling ui app and backend app in the same directory.
 ___
 ```ssh
 $ cd school-registry-backend
