@@ -7,10 +7,13 @@ This project provides to create students and lectures, and allows users to manag
 
 ### Endpoints
 
+#### Login Credentials
+---
+admin credentials -> admin@gmail.com - passwd123*
+user credentials -> user@gmail.com - passwd123*
+
 ```html
 POST /api/auth/logih -- usable for login as a user or admin
-        admin credentials -> admin@gmail.com - passwd123*
-        user credentials -> user@gmail.com - passwd123*
 
 GET /api/lectures/getAll - retrieves all lectures
 GET /api/lectures/getLectureById/{lectureId} - get lecture by id
@@ -52,29 +55,24 @@ There are unit tests written for student, lecture and report services.
 ---
 - Maven
 - Docker
-
+  
 ### Run & Build
 
 ---
-There are 2 ways of run & build the application.
+The UI app and backend application is ready to go and work with only one command that is explained below.
 
 #### Docker Compose
 
 
-You just need to run `docker-compose up` command
+You just need to run `docker-compose up -d` command
 ___
-*$PORT: 8080*
 ```ssh
 $ cd school-registry-backend
-$ docker-compose up
+$ docker-compose up -d 
 ```
+This command will pull the required images and create 3 containers( backend, frontend, database ).
+React app will be available in;
 
-#### Maven
-___
-*$PORT: 8080*
-```ssh
-$ cd school-registry-backend
-$ mvn clean install
-$ mvn spring-boot:run
-
+```
+http://172.20.0.2:3000/
 ```
