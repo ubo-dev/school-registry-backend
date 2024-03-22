@@ -61,22 +61,23 @@ There are unit tests written for student, lecture and report services.
 ### Run & Build
 
 ---
-The UI app and backend application is ready to go and work with only one command that is explained below.
+The UI app and backend application is ready to go and work with commands that is explained below.
 
 #### Docker Compose
-
-
-You just need to run `docker-compose up -d` command after pulling ui app and backend app in the same directory.
+This will start database and backend app.
 ___
 ```ssh
 $ cd school-registry-backend
 $ docker-compose up -d 
 ```
-This command will pull the required images and create 3 containers( backend, frontend, database ).
-React app will be available in;
 
-```
-http://172.20.0.2:3000/
+This will start the frontend app.
+___
+```ssh
+$ cd school-registry-frontend
+$ docker build . -t "school-ui-app"
+$ docker run -p 8080:8080 school-ui-app
 ```
 
-You can run ``` docker logs frontend-container ``` to see available port and address that react application works.
+Frontend application will be available on ``` http://localhost:8080/ ```
+
